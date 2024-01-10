@@ -7,19 +7,19 @@ import Characteristics from './Characteristics';
 const FilterWindow = ({ visible, height, close, position, filter, valueName, valueManager }) => {
 
     const [changeFilter, setChangeFilter] = useState({
-    Filters: {
-        Name: "",
-        RegionId: "0",
-        Manager: "",
-        DateFrom: null,
-        DateTo: null,
-        Unp: "",
-        FileNumber: "",
-        FileStatusId: "-1",
-        DebtorCategoryId: "0",
-        DeclarantId: "0",
-        ProcedureId: "0"
-    }
+        Filters: {
+            Name: "",
+            RegionId: "0",
+            Manager: "",
+            DateFrom: null,
+            DateTo: null,
+            Unp: "",
+            FileNumber: "",
+            FileStatusId: "-1",
+            DebtorCategoryId: "0",
+            DeclarantId: "0",
+            ProcedureId: "0"
+        }
 
     })
     const [opClProcedure, setOpClProcedure] = useState("hidden")
@@ -48,31 +48,49 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
 
     function convertDateFormat(inputDate) {
         const [year, month, day] = inputDate.split('-');
-        const newDate = new Date(`${year}-${month}-${day-1}T00:00:00.000Z`);
-        const utcDate = new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60000);
-        const formattedDate = utcDate.toISOString();
-      
-        return formattedDate;
-      }
+        let tempyear, tempmonth, tempday;
+        if (parseInt(day) === 1) {
+            if (parseInt(month) === 1) {
+                tempyear = year - 1
+                tempmonth = 12
+                tempday = 30
+            }
+            else {
+                tempmonth = month - 1
+                tempday = 30
+                tempyear = year
+            }
+        } else {
+            tempmonth = month
+            tempday = day-1
+            tempyear = year
+        }
+
+
+        const newDate = `${tempyear}-${tempmonth}-${tempday}T21:00:00.000Z`;
+
+
+        return newDate;
+    }
 
     function updateFilter() {
         const tempDateFrom = dateFrom !== null ? convertDateFormat(dateFrom) : null
         const tempDateTo = dateTo !== null ? convertDateFormat(dateTo) : null
         const update = {
             ...changeFilter,
-        Filters: {
-            Name: valueName,
-            RegionId: regionId,
-            Manager: valueManager,
-            DateFrom: tempDateFrom,
-            DateTo: tempDateTo,
-            Unp: unp,
-            FileNumber: fileNumber,
-            FileStatusId: fileStatusId,
-            DebtorCategoryId: debtorCategoryId,
-            DeclarantId: declarantId,
-            ProcedureId: procedureId
-        }
+            Filters: {
+                Name: valueName,
+                RegionId: regionId,
+                Manager: valueManager,
+                DateFrom: tempDateFrom,
+                DateTo: tempDateTo,
+                Unp: unp,
+                FileNumber: fileNumber,
+                FileStatusId: fileStatusId,
+                DebtorCategoryId: debtorCategoryId,
+                DeclarantId: declarantId,
+                ProcedureId: procedureId
+            }
         }
         close()
         filter(update)
@@ -84,10 +102,6 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
     }
 
     function activOrUnactive(typeButton) {
-        console.log(categoriesList)
-        console.log(typesList)
-        console.log(proceduresList)
-        console.log(regionsList)
         const active = document.getElementById("activ")
         const unactive = document.getElementById("unactiv")
         if (typeButton == "activ") {
@@ -231,7 +245,7 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
                         <div className='paragraph'>Номер дела:</div>
                     </div>
                     <input className='inp' placeholder='Номер дела...' value={fileNumber} onChange={e => setFileNumber(e.target.value)} /> {/*Номер дела(тип текстовое поле)*/}
-                    
+
                 </div>
             </div>
             <div className='black-area-for-close' style={{ height: height }} onClick={() => updateFilter()}>

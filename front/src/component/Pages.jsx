@@ -48,7 +48,6 @@ const Pages = ({ page, pageNow, setPage }) => {
     }
 
     function pageMoreSeven(p) {
-        console.log("asd: ", p)
         const el2 = document.getElementById("2")
         const el3 = document.getElementById("3")
         const el4 = document.getElementById("4")

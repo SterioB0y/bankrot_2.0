@@ -42,49 +42,6 @@ function App() {
     SortOrder: "DESC"
   })
 
-  /** 
-
-  const apiUrl = 'https://thingproxy.freeboard.io/fetch/https://bankrot.gov.by/Home/GetNewsItems';
-
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-
-  const value = {
-    Page: 1,
-    PageSize: 20,
-    SortOrder: "DESC",
-    SortBy: "DateStart",
-    Filters: {
-      Name: "",
-      RegionId: "0",
-      Manager: "",
-      DateFrom: "2023-10-02T21:00:00.000Z",
-      DateTo: "2023-10-29T21:00:00.000Z",
-      Unp: "",
-      FileNumber: "",
-      FileStatusId: "-1",
-      DebtorCategoryId: "0",
-      DeclarantId: "0",
-      ProcedureId: "0"
-    }
-  }
-
-    fetch("http://localhost:3001/Debtors/GetDebtors", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(value),
-    })
-    .then(res=>res.json())
-    .then(res=>console.log(res))
-
-  */
-
-
-
   function openFilter() {
     setVisible("visible")
     setHeig(`${document.querySelector(".container-filter").getBoundingClientRect().height}px`)
@@ -139,10 +96,7 @@ function App() {
       
   },[debtorsList])
 
-  useEffect(() => {
-    // console.log(debtorsList)
-    console.log(pageNow)
-  }, [debtors])
+  useEffect(() => {  }, [debtors])
 
   useEffect(()=>{
     const tempcount = Math.ceil((pages) / 15)

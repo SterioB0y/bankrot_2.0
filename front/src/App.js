@@ -249,6 +249,7 @@ function App() {
           <DebtorsTable sortBy={updateSort} countDeb={pages} debtorsList={debtors} />
         </div>
         <Pages page={pagesArray} pageNow={pageNow} setPage={updatePage}/>
+        <h3 className='countDebtors'>Найдено должников: {pages}</h3>
       </div>
     </div>
   );

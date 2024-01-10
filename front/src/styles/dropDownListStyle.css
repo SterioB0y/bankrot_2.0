@@ -1,0 +1,14 @@
+.drop-down-list{
+    width: 270px;
+    margin: 2%;
+    border-radius: 5px;
+    border: 1px solid rgb(215, 215, 215);
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.arrow{
+    width: 15px;
+}

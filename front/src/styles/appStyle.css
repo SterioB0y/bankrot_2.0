@@ -1,0 +1,48 @@
+.tableContainer{
+    overflow-x: auto;
+    margin: 0vw 0vw 0vw 7vw;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerFilter{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.containerInput{
+    width: 86%;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonFilter{
+    cursor: pointer;
+    margin: 10px 20px 10px 20px;
+    width: 50px;
+}
+
+.nameDebtor{
+    margin: 10px 0px 5px 0px;
+    height: 25px;
+    border-radius: 7px;
+    padding-left: 5px;
+    border: 1px solid rgb(177, 177, 177);
+}
+
+.nameManager{
+    height: 25px;
+    border-radius: 7px;
+    padding-left: 5px;
+    border: 1px solid rgb(177, 177, 177);
+}
+
+.mainContainer{
+    position: relative;
+    z-index: 1;
+}

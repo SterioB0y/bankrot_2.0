@@ -41,6 +41,10 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
     const [regionsList, setRegionsList] = useState({})
     const [activeButton, setActiveButton] = useState(false)
     const [unactiveButton, setUnactiveButton] = useState(false)
+    const [nameCategory, setNameCategory] = useState("Любая категория")
+    const [nameType, setNameType] = useState("Любой заявитель")
+    const [nameProcedure, setNameProcedure] = useState("Любая процедура")
+    const [nameRegion, setNameRegion] = useState("Любой регион")
 
     function convertDateFormat(inputDate) {
         const [year, month, day] = inputDate.split('-');
@@ -144,6 +148,22 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
         setDeclarantId(update)
     }
 
+    //
+    const updateNameRegion = (update) => {
+        setNameRegion(update)
+    }
+
+    const updateNameCategory = (update) => {
+        setNameCategory(update)
+    }
+
+    const updateNameProcedure = (update) => {
+        setNameProcedure(update)
+    }
+
+    const updateNameType = (update) => {
+        setNameType(update)
+    }
 
     useEffect(() => {
         //получение фильтра
@@ -179,8 +199,8 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
                     <div className='paragraph-container'>
                         <div className='paragraph'>Процедура:</div>
                     </div>
-                    <DropDownList id={"procedure"} onClick={() => opClProcedure == "hidden" ? setOpClProcedure("visible") : setOpClProcedure("hidden")}>Процедура</DropDownList> {/*Процедура(тип выподающий список)*/}
-                    <Characteristics id={updateProcedures} elements={"proceduresList"} classname={"procedure"} vison={opClProcedure} />
+                    <DropDownList id={"procedure"} onClick={() => opClProcedure == "hidden" ? setOpClProcedure("visible") : setOpClProcedure("hidden")}>{nameProcedure}</DropDownList> {/*Процедура(тип выподающий список)*/}
+                    <Characteristics name={updateNameProcedure} id={updateProcedures} elements={"proceduresList"} classname={"procedure"} vison={opClProcedure} />
                     <div className='paragraph-container'>
                         <div className='paragraph'>УНП:</div>
                     </div>
@@ -188,18 +208,18 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
                     <div className='paragraph-container'>
                         <div className='paragraph'>Регион:</div>
                     </div>
-                    <DropDownList id={"region"} onClick={() => opClRegion == "hidden" ? setOpClRegion("visible") : setOpClRegion("hidden")}>Регион</DropDownList> {/*Регион(тип выподающий список)*/}
-                    <Characteristics id={updateRegions} elements={"regionsList"} classname={"region"} vison={opClRegion} />
+                    <DropDownList id={"region"} onClick={() => opClRegion == "hidden" ? setOpClRegion("visible") : setOpClRegion("hidden")}>{nameRegion}</DropDownList> {/*Регион(тип выподающий список)*/}
+                    <Characteristics name={updateNameRegion} id={updateRegions} elements={"regionsList"} classname={"region"} vison={opClRegion} />
                     <div className='paragraph-container'>
                         <div className='paragraph'>Категории:</div>
                     </div>
-                    <DropDownList id={"category"} onClick={() => opClCategory == "hidden" ? setOpClCategory("visible") : setOpClCategory("hidden")}>Категории</DropDownList> {/*Категории(тип выподающий список)*/}
-                    <Characteristics id={updateCategories} elements={"categoriesList"} classname={"category"} vison={opClCategory} />
+                    <DropDownList id={"category"} onClick={() => opClCategory == "hidden" ? setOpClCategory("visible") : setOpClCategory("hidden")}>{nameCategory}</DropDownList> {/*Категории(тип выподающий список)*/}
+                    <Characteristics name={updateNameCategory} id={updateCategories} elements={"categoriesList"} classname={"category"} vison={opClCategory} />
                     <div className='paragraph-container'>
                         <div className='paragraph'>Тип заявителя:</div>
                     </div>
-                    <DropDownList id={"type"} onClick={() => opClType == "hidden" ? setOpClType("visible") : setOpClType("hidden")}>Тип заявителя</DropDownList> {/*Тип заявителя(тип выподающий список)*/}
-                    <Characteristics id={updateTypes} elements={"typesList"} classname={"type"} vison={opClType} />
+                    <DropDownList id={"type"} onClick={() => opClType == "hidden" ? setOpClType("visible") : setOpClType("hidden")}>{nameType}</DropDownList> {/*Тип заявителя(тип выподающий список)*/}
+                    <Characteristics name={updateNameType} id={updateTypes} elements={"typesList"} classname={"type"} vison={opClType} />
                     <div className='paragraph-container'>
                         <div className='paragraph'>Статус дела:</div>
                     </div>
@@ -211,13 +231,7 @@ const FilterWindow = ({ visible, height, close, position, filter, valueName, val
                         <div className='paragraph'>Номер дела:</div>
                     </div>
                     <input className='inp' placeholder='Номер дела...' value={fileNumber} onChange={e => setFileNumber(e.target.value)} /> {/*Номер дела(тип текстовое поле)*/}
-                    {/* <div className='paragraph-container'>
-                        <div className='paragraph'>Доля государственной собственности:</div>
-                    </div> */}
-                    {/* <div className='flex-container' style={{ marginLeft: "-20px" }}>
-                        <input className='inp' placeholder='от...' /> 
-                        <input className='inp' placeholder='до...' />
-                    </div> */}
+                    
                 </div>
             </div>
             <div className='black-area-for-close' style={{ height: height }} onClick={() => updateFilter()}>

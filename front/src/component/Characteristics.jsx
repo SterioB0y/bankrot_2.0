@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../styles/characteristicsStyle.css"
 
-const Characteristics = ({classname, vison, elements, id}) => {
+const Characteristics = ({classname, vison, elements, id, name}) => {
 
     const [top, setTop] = useState("0px")
     const [left, setLeft] = useState("0px")
@@ -34,6 +34,7 @@ const Characteristics = ({classname, vison, elements, id}) => {
             {arrays.map((element)=>
                 <div className='no-wrap' onClick={()=>{
                     id(element.Value)
+                    name(element.Text)
                     document.getElementById(elements).style.visibility = "hidden";
                 }
                 }>

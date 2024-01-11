@@ -34,7 +34,10 @@ const Characteristics = ({classname, vison, elements, id, name}) => {
             {arrays.map((element)=>
                 <div className='no-wrap' onClick={()=>{
                     id(element.Value)
-                    name(element.Text)
+                    if(element.Text.length < 25)
+                        name(element.Text)
+                    else
+                        name(element.Text.slice(0, 25)+"...")
                     document.getElementById(elements).style.visibility = "hidden";
                 }
                 }>
